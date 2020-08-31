@@ -24,14 +24,14 @@ import {
                             {cmt.comment}
                          </div>
                          <div>
-                             <cite>--{cmt.author} , {cmt.date}</cite>
+                             <cite>--{cmt.author} ,{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</cite>
                          </div>
                      </div>
                  );
              });
             }
                   
-  
+           // console.log((this.props.d)[0]);
   
     if(this.props.dish!=null)
     {
