@@ -3,6 +3,8 @@ import {
     Card, CardImg, CardText, CardBody, CardLink,
     CardTitle, CardSubtitle , CardImgOverlay
   } from 'reactstrap'; 
+  import {Link} from 'react-router-dom';
+  import {Breadcrumb ,BreadcrumbItem } from 'reactstrap'
 
 
   function RenderComments({cmt})
@@ -20,7 +22,7 @@ import {
     );
   }
 
-  function RenderDish({dish , com })
+  function RenderDish({dish ,com })
   {
     
       if(dish!=null)
@@ -58,7 +60,7 @@ import {
           if(props.dish!=null){
           
             com =
-             props.dish.comments.map((cmt) => 
+             props.comments.map((cmt) => 
              {
                  return(
                   < RenderComments cmt={cmt} /> 
@@ -66,7 +68,24 @@ import {
              });
             }
       return(
+        <div className="container">
+        <div className="row">
+            <div className="col-12">
+              <h2> You are Here </h2>
+            </div>
+            <div className="col-12">
+              
+              <Breadcrumb>
+              <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+              <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+      <BreadcrumbItem>{props.dish.name}</BreadcrumbItem>
+              </Breadcrumb>
+            </div>
+          </div>
+      <div>
       <RenderDish dish={props.dish} com={com} />
+       </div>
+      </div>
         );
       }
   
