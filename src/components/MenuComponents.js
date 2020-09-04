@@ -39,6 +39,7 @@ function Menu(props) {
               
             );
         });
+        //console.log(menu);
         
         
         

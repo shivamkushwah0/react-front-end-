@@ -67,6 +67,8 @@ import {
                  );
              });
             }
+            //console.log(com);
+
       return(
         <div className="container">
         <div className="row">
@@ -78,7 +80,7 @@ import {
               <Breadcrumb>
               <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
               <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-      <BreadcrumbItem>{props.dish.name}</BreadcrumbItem>
+              <BreadcrumbItem>{props.dish.name}</BreadcrumbItem>
               </Breadcrumb>
             </div>
           </div>
