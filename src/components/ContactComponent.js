@@ -1,59 +1,27 @@
 import React, { Component } from 'react';
 import {Breadcrumb , BreadcrumbItem , FormGroup ,Row ,Col , Label ,Input , Form , Button, FormFeedback} from 'reactstrap';
 import  {Link} from 'react-router-dom';
-import {Control , LocalForm , Errors, controls} from 'react-redux-form';
+import {Control , LocalForm , Errors} from 'react-redux-form';
 
+const required =(val)=> val && val.length;
+const maxlength =(len)=>(val)=>  val &&  (val.length<=len);
+const minlength =(len)=>(val) => val && (val.length >=len);
+const validemail = (val) => val && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+const isNum =(val) => !isNaN(Number(val));
 class Contact extends Component {
     constructor(props){
         super(props);
-        
-        };
+    };
        
-        
-        
-    
-
-  
-
-    
-
-    
-
-    // validate(firstname , lastname , email ,tel ){
-    //     const errors = {
-    //         firstname: '',
-    //         lastname: '',
-    //         tel: '',
-    //         email : '' ,
-    //     };
-    //     if(this.state.touched.firstname && (firstname.length<3 || firstname.length > 10 ) )
-    //     errors.firstname = "The First Name should be between 3 to 10 letters";
-
-    //     if(this.state.touched.lastname && (lastname.length<3 || lastname.length > 10 ) )
-    //     errors.lastname = "The Second Name should be between 3 to 10 letters";
-
-    //     if(this.state.touched.email && (email.indexOf("@")==-1) )
-    //     errors.email= "The Email should contain a @ symbol";
-
-
-    //     const reg = /^\d+$/;
-    //     if(this.state.touched.tel && !reg.test(tel))
-    //     errors.tel = "The telephone number should contain only numeric digits";
-
-    //     return errors;
-
-    // }
-
     handleSubmit (values) {
         console.log("the given data is : " + JSON.stringify(values));
         alert("the given data is : " + JSON.stringify(values));
-        //event.preventDefault();
+        
     }
-    
 
     render(){
 
-        //const errors = this.validate (this.state.firstname , this.state.lastname , this.state.email , this.state.tel );
+       
     return(
         <div className="container">
              <div className="row">
@@ -105,9 +73,19 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.text model=".firstname" id="firstname" name="firstname"
                                         placeholder="First Name" className="form-control"
+                                        validators={{required , maxlength: maxlength(15),minlength: minlength(2)}}
                                          />
                                         
                                 </Col>
+                                <Errors model=".firstname" 
+                                        show="touched"
+                                        className="text-danger col-md-10 offset-md-2"
+                                        messages={{
+                                            required :" this is a required field",
+                                            maxlength: " max length should be 12",
+                                            minlength: " min length should be 2" 
+                                        }}
+                                        />
                                 
                                 </Row>
                             <Row className="form-group">
@@ -116,20 +94,46 @@ class Contact extends Component {
                                     <Control.text model=".lastname" id="lastname" name="lastname"
                                         placeholder="Last Name" 
                                         className="form-control"
+                                        validators={{required , maxlength: maxlength(15),minlength: minlength(2)}}
                                          />
                                          
                                 </Col>
+                                <Errors model=".lastname" 
+                                        show="touched"
+                                        className="text-danger col-md-10 offset-md-2"
+                                        messages={{
+                                            required :" this is a required field",
+                                            maxlength: " max length should be 12",
+                                            minlength: " min length should be 2" 
+                                        }}
+                                        />
+                                
                                 
                                 </Row>
                             <Row className="form-group">
-                                <Label htmlFor="tel" md={2}>Last Name</Label>
+                                <Label htmlFor="tel" md={2}>Tel No.</Label>
                                 <Col md={10}>
                                     <Control.text model=".tel" id="tel" name="tel"
                                         placeholder="Telephone Number"
                                         className =" form-control"  
+                                        validators={{required , maxlength: maxlength(15),minlength: minlength(2) ,
+                                            isNumber:isNum()
+                                        }}
                                          />
                                          
                                 </Col>
+                                <Errors model=".tel" 
+                                        show="touched"
+                                        className="text-danger col-md-10 offset-md-2"
+                                        messages={{
+                                            required :" this is a required field",
+                                            maxlength: " max length should be 12",
+                                            minlength: " min length should be 2",
+                                            isNumber:" telephone number should contain only number"
+
+                                        }}
+                                        />
+                                
                                 
                                 </Row>  
                             <Row className="form-group">
@@ -138,9 +142,22 @@ class Contact extends Component {
                                     <Control.text model=".email" id="email" name="email"
                                         placeholder="Email" 
                                         className="form-control" 
+                                        validators={{required ,
+                                        isEmail: validemail() 
+                                        }}
                                         />
                                          
                                 </Col>
+                                <Errors model=".email" 
+                                        show="touched"
+                                        className="text-danger col-md-10 offset-md-2"
+                                        messages={{
+                                            required :" this is a required field",
+                                            isEmail:" invalid email"
+
+                                        }}
+                                        />
+                                
                                
                                 </Row>
                             <Row className="form-group">
@@ -149,6 +166,7 @@ class Contact extends Component {
                                         <Label check>
                                             <Control.checkbox model=".agree"
                                                 name="agree" className="form-check-input"
+                                                
                                                  /> {' '}
                                             <strong>May we contact you?</strong>
                                         </Label>
@@ -189,4 +207,4 @@ class Contact extends Component {
     }
 }
 
-export default  Contact;
+export default Contact;
