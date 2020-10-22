@@ -8,37 +8,39 @@ import Home from './HomeComponent';
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import {connect} from 'react-redux';
+import {AddComment} from '../redux/ActionCreators'
 
 const mapStateToProps = state => {
   
   return {
-    dishes: state.dishes,
-    comments: state.comments,
-    promotions: state.promotions,
-    leaders: state.leaders,
-    
+    leaders : state.leaders ,
+    promotions : state.promotions,
+    dishes : state.dishes,
+    comments : state.comments
+  }
+  
+}
+
+const mapDispatchToProps = (dispatch) =>
+{
+  return {
+    addcomment: (dishId , rating , author , comment)=> dispatch(AddComment(dishId , rating , author , comment))
   }
 }
-console.log(mapStateToProps);
+
 
 
 
 class Main extends Component {
 
-  constructor(props){
-    super(props);
-    
-  }
-  
-  
   
   render(){
-    //console.log(this.props.store);
+    //console.log(this.props);
     //console.log(this);
     const HomePage = () => {
       return(
           <Home 
-              dish={this.props.store.getState().dishes.filter((dish) => dish.featured)[0]}
+              dish={this.props.dishes.filter((dish) => dish.featured)[0]}
               promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
               leader={this.props.leaders.filter((leader) => leader.featured)[0]}
           />
@@ -47,7 +49,8 @@ class Main extends Component {
     const Dishdetail = ({match}) =>{
       return (
         < DishDetail dish={this.props.dishes.filter((dish)=> dish.id === parseInt(match.params.dishId , 10))[0]} 
-        comments = {this.props.comments.filter((cmt) => cmt.id=== parseInt(match.params.dishId,10))}
+        comments = {this.props.comments.filter((cmt) => cmt.dishId=== parseInt(match.params.dishId,10))}
+        addcomment = {this.props.addcomment}
         />
       );
     }
@@ -72,4 +75,4 @@ class Main extends Component {
   );
 }
 }
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps , mapDispatchToProps)(Main));

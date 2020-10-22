@@ -13,12 +13,14 @@ class App extends Component {
   
 
   render(){
+        
+      console.log(store);
   return (
       <Provider store = { store }>
         
         <BrowserRouter>
         <div>
-        <Main store = {store}/>
+        <Main/>
         </div>
       </BrowserRouter>
       </Provider>
