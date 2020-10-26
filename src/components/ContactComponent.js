@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Breadcrumb , BreadcrumbItem , FormGroup ,Row ,Col , Label ,Input , Form , Button, FormFeedback} from 'reactstrap';
+import {Breadcrumb , BreadcrumbItem  ,Row ,Col , Label , Button} from 'reactstrap';
 import  {Link} from 'react-router-dom';
 import {Control , LocalForm , Errors} from 'react-redux-form';
 
@@ -9,9 +9,7 @@ const minlength =(len)=>(val) => val && (val.length >=len);
 const validemail = (val) => val && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 const isNum =(val) => !isNaN(Number(val));
 class Contact extends Component {
-    constructor(props){
-        super(props);
-    };
+    
        
     handleSubmit (values) {
         console.log("the given data is : " + JSON.stringify(values));

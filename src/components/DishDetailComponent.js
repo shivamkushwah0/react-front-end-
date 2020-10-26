@@ -1,11 +1,12 @@
-import React , {Component, useState} from 'react';
+import React , {useState} from 'react';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, Button, Modal , ModalBody ,ModalHeader,ModalFooter, Label ,Form
+    CardTitle, Button, Modal , ModalBody ,ModalHeader,ModalFooter, Label 
   } from 'reactstrap'; 
   import {Link} from 'react-router-dom';
   import {Breadcrumb ,BreadcrumbItem } from 'reactstrap';
   import {LocalForm , Control , Errors} from 'react-redux-form';
+  import {Loading} from './LoadingComponent'
    
 
   function RenderComments(props)
@@ -17,7 +18,7 @@ import {
   const handleSubmit = (values) => 
   {
     toggle();
-    //console.log(props);
+    
     props.addcomment(props.dish.id , values.rating , values.name ,values.comment);
   }
 
@@ -37,9 +38,10 @@ import {
   });
  
     return (
+      
       <div>
       {com}
-      <Button className="btn-primary-outline" onClick={toggle} className="m-2">
+      <Button className="btn-primary-outline m-2" onClick={toggle} >
         <i className="fa fa-pencil" />{" "}Submit Comment
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
@@ -91,19 +93,32 @@ import {
     )
   }
 
-  function RenderDish({dish} )
+  function RenderDish(props )
   {
+    
     return(
         <Card>
-          <CardImg top src={dish.image} alt={dish.name}/>
+          <CardImg top src={props.dish.image} alt={props.dish.name}/>
           <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          <CardText>{dish.description}</CardText>
+          <CardTitle>{props.dish.name}</CardTitle>
+          <CardText>{props.dish.description}</CardText>
           </CardBody>
         </Card>
         );
       }
       function DishDetail (props) {
+        if(props.isLoading)
+    return <Loading />
+
+    else if (props.errMess)
+    {
+        return (
+            <div>
+                <h4>{props.errMess}</h4>
+            </div>
+        )
+    }
+    else 
       return(
         <div className="container">
         <div className="row">

@@ -6,7 +6,7 @@ import {ConfigureStore } from './redux/ConfigureStore';
 
 const store = ConfigureStore();
 
-//console.log(store);
+
 
 class App extends Component {
 
@@ -14,7 +14,7 @@ class App extends Component {
 
   render(){
         
-      console.log(store);
+     
   return (
       <Provider store = { store }>
         
