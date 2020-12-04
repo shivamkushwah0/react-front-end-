@@ -16,5 +16,6 @@ export const ConfigureStore = () =>
             leaders : Leaders 
         }) , applyMiddleware(thunk , logger) 
     );
+
     return store;
 }

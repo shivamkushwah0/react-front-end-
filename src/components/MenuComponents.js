@@ -6,9 +6,6 @@ import {Link} from 'react-router-dom';
 import {Breadcrumb , BreadcrumbItem } from 'reactstrap';
 import {Loading} from './LoadingComponent';
 
-
-
-
 function RenderMenuItem(props)
 {
   return (
@@ -47,15 +44,7 @@ function Menu(props) {
           </div>
       )
   }
-  
-
-
-        
-        
-        
-        
-        
-        else
+      else
         return (
           <React.Fragment>
           <div className="row">
@@ -75,9 +64,5 @@ function Menu(props) {
             </div>
             </React.Fragment>
             );
-    
-   }
-
-
-
+    }
 export default Menu;

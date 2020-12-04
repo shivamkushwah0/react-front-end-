@@ -1,6 +1,6 @@
 import React ,{Component} from 'react';
 import Menu from './MenuComponents';
-import  DishDetail  from './DishDetailComponent';
+import DishDetail  from './DishDetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import {Route , Redirect ,Switch , withRouter } from 'react-router-dom';
@@ -35,13 +35,14 @@ const mapDispatchToProps = (dispatch) =>
 
 
 class Main extends Component {
+  
 
   componentDidMount() {
     this.props.fetchDishes()
   }
 
   render(){
-    
+    console.log(this.props);
     const HomePage = () => {
       return(
           <Home 

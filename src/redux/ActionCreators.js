@@ -17,7 +17,7 @@ export const AddComment = (dishId , rating , author , comment) => {
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
 
-    setTimeout(() => {
+    setTimeout(() => {                                      // this is a thunk so it will return a function instead of a object 
         dispatch(addDishes(DISHES));
     }, 1000);
 }
