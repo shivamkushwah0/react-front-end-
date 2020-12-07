@@ -7,6 +7,7 @@ import {
   import {Breadcrumb ,BreadcrumbItem } from 'reactstrap';
   import {LocalForm , Control , Errors} from 'react-redux-form';
   import {Loading} from './LoadingComponent'
+import { baseUrl } from '../shared/baseURL';
    
 
   function RenderComments(props)
@@ -98,7 +99,7 @@ import {
     
     return(
         <Card>
-          <CardImg top src={props.dish.image} alt={props.dish.name}/>
+          <CardImg top src={baseUrl +  props.dish.image} alt={props.dish.name}/>
           <CardBody>
           <CardTitle>{props.dish.name}</CardTitle>
           <CardText>{props.dish.description}</CardText>

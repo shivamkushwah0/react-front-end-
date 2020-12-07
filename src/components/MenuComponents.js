@@ -5,13 +5,14 @@ import {
 import {Link} from 'react-router-dom';
 import {Breadcrumb , BreadcrumbItem } from 'reactstrap';
 import {Loading} from './LoadingComponent';
+import { baseUrl } from '../shared/baseURL';
 
 function RenderMenuItem(props)
 {
   return (
     <div className="card" key={props.dish.id}  >
      <Link to = {`/menu/${props.dish.id}`}>
-    <CardImg width="100%"  src={props.dish.image} alt={props.dish.name} />
+    <CardImg width="100%"  src={baseUrl + props.dish.image} alt={props.dish.name} />
     <CardImgOverlay>
     <CardTitle>
     {props.dish.name}
