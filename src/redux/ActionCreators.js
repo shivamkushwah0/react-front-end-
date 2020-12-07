@@ -1,5 +1,4 @@
 import * as ActionTypes from "./ActionTypes"
-import {DISHES} from "../shared/dishes";
 import {baseUrl} from "../shared/baseURL";
 import fetch from "cross-fetch";
 
@@ -21,6 +20,7 @@ export const fetchDishes = () => (dispatch) => {
 
     return fetch(baseUrl+"dishes")
     .then(response => {
+        
         if(response.ok)
         return response;
         else 

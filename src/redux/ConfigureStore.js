@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import  logger  from 'redux-logger';
 import {createForms} from 'react-redux-form';
 import {Initialstate} from './forms';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 export const ConfigureStore = () => 
 {
@@ -19,7 +20,7 @@ export const ConfigureStore = () =>
             ...createForms({
                 user : Initialstate
             }) 
-        }) , applyMiddleware(thunk , logger) 
+        }) ,composeWithDevTools (applyMiddleware(thunk , logger) )
     );
 
     return store;

@@ -37,11 +37,11 @@ function Menu(props) {
   if(props.isLoading)
   return <Loading />
 
-  else if (props.errMess)
+  else if (props.err)
   {
       return (
           <div>
-              <h4>{props.errMess}</h4>
+              <h4>{props.err}</h4>
           </div>
       )
   }

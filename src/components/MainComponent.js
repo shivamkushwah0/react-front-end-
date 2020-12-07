@@ -83,7 +83,7 @@ class Main extends Component {
       <div className="container">
       <Switch>
               <Route path='/home' component={HomePage} />
-              <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes.dishes} isLoading={this.props.dishes.isLoading} errMess={this.props.dishes.errMess}/>} />
+              <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes.dishes} isLoading={this.props.dishes.isLoading} err={this.props.dishes.err}/>} />
               <Route path="/menu/:dishId" component={Dishdetail}></Route>
               <Route path = "/contact" component = {() => <Contact handlereset={this.props.handlereset} />} />
               <Route path = "/about" component = {() => <About leaders={this.props.leaders}/>} />
