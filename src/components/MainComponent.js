@@ -43,9 +43,10 @@ class Main extends Component {
   
 
   componentDidMount() {
+    this.props.fetchPromos();
     this.props.fetchDishes();
     this.props.fetchComments();
-    this.props.fetchPromos();
+    
   }
 
   render(){
@@ -67,7 +68,7 @@ class Main extends Component {
         < DishDetail dish={this.props.dishes.dishes.filter((dish)=> dish.id === parseInt(match.params.dishId , 10))[0]} 
         isLoading={this.props.dishes.isLoading}
         errMess={this.props.dishes.err}
-        comments = {this.props.comments.filter((cmt) => cmt.dishId=== parseInt(match.params.dishId,10))}
+        comments = {this.props.comments.comments.filter((cmt) => cmt.dishId=== parseInt(match.params.dishId,10))}
         addcomment = {this.props.addcomment}
 
         />

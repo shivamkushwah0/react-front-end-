@@ -3,6 +3,7 @@ import {Card , CardImg , CardTitle ,CardBody ,CardSubtitle ,CardText } from 'rea
 import { baseUrl } from '../shared/baseURL';
 import {Loading} from './LoadingComponent';
 function RenderCard(props){
+    console.log("the props of the cards are ");
     console.log(props);
     if(props.isLoading)
     return <Loading />
