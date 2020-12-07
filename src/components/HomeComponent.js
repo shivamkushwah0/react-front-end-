@@ -3,16 +3,17 @@ import {Card , CardImg , CardTitle ,CardBody ,CardSubtitle ,CardText } from 'rea
 import { baseUrl } from '../shared/baseURL';
 import {Loading} from './LoadingComponent';
 function RenderCard(props){
-    console.log("the props of the cards are ");
+    console.log("these are the props");
     console.log(props);
+
     if(props.isLoading)
     return <Loading />
 
-    else if (props.dishErrMess)
+    else if (props.err)
     {
         return (
             <div>
-                <h4>{props.dishErrMess}</h4>
+                <h4>{props.err}</h4>
             </div>
         )
     }
@@ -36,10 +37,10 @@ function Home(props){
         <div className="container">
             <div className="row align-items-start">
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.dish} isLoading={props.dishesLoading}/>
+                    <RenderCard item={props.dish} isLoading={props.dishesLoading} err={props.dishErrMess}/>
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.promotion} isLoading = {props.promosLoading} />
+                    <RenderCard item={props.promotion} isLoading = {props.promosLoading} err={props.promosErrMess} />
                 </div>
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.leader} />
