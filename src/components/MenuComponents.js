@@ -6,10 +6,16 @@ import {Link} from 'react-router-dom';
 import {Breadcrumb , BreadcrumbItem } from 'reactstrap';
 import {Loading} from './LoadingComponent';
 import { baseUrl } from '../shared/baseURL';
+import { FadeTransform } from 'react-animation-components';
 
 function RenderMenuItem(props)
 {
   return (
+    <FadeTransform
+    in
+    transformProps={{
+        exitTransform: 'scale(0.5) translateY(-50%)'
+    }}>
     <div className="card" key={props.dish.id}  >
      <Link to = {`/menu/${props.dish.id}`}>
     <CardImg width="100%"  src={baseUrl + props.dish.image} alt={props.dish.name} />
@@ -20,6 +26,7 @@ function RenderMenuItem(props)
     </CardImgOverlay>
     </Link>
   </div>
+  </FadeTransform>
   );
 }
 

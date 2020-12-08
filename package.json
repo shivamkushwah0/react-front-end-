@@ -9,6 +9,7 @@
     "beautify-css": "^1.0.0",
     "bootstrap": "^4.5.2",
     "cross-fetch": "^3.0.6",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-animation-components": "^3.0.0",
     "react-dom": "^16.13.1",

@@ -8,6 +8,8 @@ import {
   import {LocalForm , Control , Errors} from 'react-redux-form';
   import {Loading} from './LoadingComponent'
 import { baseUrl } from '../shared/baseURL';
+import { FadeTransform, Fade, Stagger } from "react-animation-components"
+
    
 
   function RenderComments(props)
@@ -25,6 +27,8 @@ import { baseUrl } from '../shared/baseURL';
 
   var com = props.cmt.map((cmt)=> {
     return ( 
+      
+        <Fade in>
     <div key={cmt.id} className="m-4">
                         
     <div>
@@ -35,13 +39,22 @@ import { baseUrl } from '../shared/baseURL';
     </div>
     
 </div>
+</Fade>
+
     )
   });
+
+
  
     return (
       
       <div>
+       
+      <Stagger in>
       {com}
+      </Stagger>
+      
+      
       <Button className="btn-primary-outline m-2" onClick={toggle} >
         <i className="fa fa-pencil" />{" "}Submit Comment
       </Button>
@@ -98,6 +111,11 @@ import { baseUrl } from '../shared/baseURL';
   {
     
     return(
+      <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
         <Card>
           <CardImg top src={baseUrl +  props.dish.image} alt={props.dish.name}/>
           <CardBody>
@@ -105,6 +123,7 @@ import { baseUrl } from '../shared/baseURL';
           <CardText>{props.dish.description}</CardText>
           </CardBody>
         </Card>
+        </FadeTransform>
         );
       }
       function DishDetail (props) {

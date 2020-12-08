@@ -22,8 +22,7 @@ class Contact extends Component {
 
        const handleSubmit = (values) => {
         
-            console.log("the given data is : " + JSON.stringify(values));
-            alert("the given data is : " + JSON.stringify(values));
+        this.props.postfeedback(values.feedback ,values.firstname + " " +values.lastname , values.email , values.ContactType , values.TelNo , values.agree);
             this.props.handlereset();
             
         }
@@ -185,7 +184,7 @@ class Contact extends Component {
                                         </div> 
                                 </Col>
                                 <Col md={{size: 3 , offset:1}}>
-                                   <Control.select model=".contactType" name="contactType" className="form-control">
+                                   <Control.select model="user.ContactType" name="contactType" className="form-control">
                                     <option>
                                         Tel
                                     </option>

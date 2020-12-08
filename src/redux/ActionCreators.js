@@ -168,3 +168,87 @@ export const commentsFailed = (mess) => {
         payload : mess
     }
 }
+
+export const addLeaders = (boolean) => {
+    return {
+        type: ActionTypes.ADD_LEADERS ,
+        payload : boolean
+    }
+}
+export const leadersFailed = (err) => {
+    return {
+        type : ActionTypes.LEADERS_FAILED,
+        payload : err
+    }
+}
+export const leadersLoading = () =>
+{
+    return {
+        type: ActionTypes.LEADERS_LOADING 
+    }
+}
+
+export const fetchLeaders = () => (dispatch) => {
+    dispatch( leadersLoading(true)) ;
+    
+   return  fetch(baseUrl + "leaders")
+    .then(response => {
+        if(response.ok)
+        return response ; 
+
+        else {
+            var error= new Error("ERROR :" + response.status + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }, error => {
+        console.log("ERROR : " + error.message);
+        var err = new Error(error.message)
+        throw err;
+    }
+    )
+    .then(response => response.json())
+    .then(response => dispatch(addLeaders(response)))
+    .catch(err => dispatch(leadersFailed(err)))
+
+    
+}
+
+export const postfeedback = (feedback , author, email , conType , contact , agree) => (dispatch) => {
+    fetch(baseUrl + "feedback" , {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        } ,
+        body : JSON.stringify({
+            name : author ,
+            feedack : feedback ,
+            agree : agree ,
+            conType : conType ,
+            email : email ,
+            Telephone: contact    
+        }) ,
+        credentials : "same-origin"
+    })
+    .then(response => {
+        if(response.ok) 
+        return response ;
+
+        else {
+            var error = new Error ( "ERROR : " + response.status + response.statusText);
+            error.response = response;
+            throw error ;
+        }
+    }  , error => {
+        var err = new Error(error.message)
+        throw err;
+    })
+    .then(response => response.json())
+    .then(response => {
+        alert("Your feedback is successfully submitted with the following credentials :" + 
+        JSON.stringify(response) )
+    })
+    .catch(err => {
+        alert("Sorry, Your feedback was not submitted due to the following error : \n" + err.message)
+    })
+}
