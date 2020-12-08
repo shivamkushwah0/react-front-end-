@@ -1,4 +1,4 @@
-import {COMMENTS} from "../shared/comments";
+
 import * as ActionTypes from './ActionTypes';
 
 export const Comments = (state={
@@ -17,9 +17,8 @@ export const Comments = (state={
         case ActionTypes.ADD_COMMENT :
         
             var comment = action.payload;
-            comment.id=state.length;
-            comment.date = new Date().toISOString();
-            return state.comment.concat(comment); 
+            console.log(state);
+            return {...state, isLoading:false , comments:state.comments.concat(comment) , err : null}
             
         default : return state;
     }

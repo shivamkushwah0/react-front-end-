@@ -2,17 +2,55 @@ import * as ActionTypes from "./ActionTypes"
 import {baseUrl} from "../shared/baseURL";
 import fetch from "cross-fetch";
 
-export const AddComment = (dishId , rating , author , comment) => {
-    console.log(dishId +" " +rating +" " + author +" " + comment +" " );
+export const AddComment = (comment) => {
+   
     return {
         type: ActionTypes.ADD_COMMENT,
-        payload : {
-            dishId : dishId ,
-            rating : rating ,
-            author : author ,
-            comment : comment
-        }
+        payload : comment
     }
+}
+
+export const postComment = (dishId , rating , author , comment) => (dispatch) => {
+    const comments = {
+        dishId : dishId,
+        rating : rating,
+        author : author,
+        comment : comment
+    }
+    comments.date = new Date().toISOString();
+
+    return fetch (baseUrl + "comments" , {
+        method : "POST" ,
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body : JSON.stringify(comments),
+        credentials : "same-origin"
+    })
+    .then(response => {
+        
+        if(response.ok)
+        return response;
+        else 
+        {
+            var error = new Error("ERROR : " + response.statusText + response.statusText)
+            error.response = response;
+            console.log(error);
+            throw error;
+        }
+    } , error => {
+        var err = new Error(error.message)
+        throw err;
+    } )
+    .then(response => response.json() )
+    .then(response => dispatch(AddComment(response)))
+    
+    .catch(err => {
+        console.log("post comments " +err.message ); 
+        alert ( "your comment was not posted: Error " + err.message);
+    })
+
+
 }
 
 export const fetchDishes = () => (dispatch) => {

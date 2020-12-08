@@ -19,8 +19,8 @@ import { baseUrl } from '../shared/baseURL';
   const handleSubmit = (values) => 
   {
     toggle();
-    
-    props.addcomment(props.dish.id , values.rating , values.name ,values.comment);
+    console.log(values);
+    props.postcomment(props.dish.id , values.rating , values.name ,values.comment);
   }
 
   var com = props.cmt.map((cmt)=> {
@@ -140,7 +140,7 @@ import { baseUrl } from '../shared/baseURL';
       <RenderDish dish={props.dish} />
       </div>
       <div className="col-12 col-sm-6">
-      <RenderComments cmt={props.comments} addcomment={props.addcomment} dish={props.dish} />
+      <RenderComments cmt={props.comments} dish={props.dish} postcomment={props.postcomment}/>
       </div>
        </div>
       </div>
